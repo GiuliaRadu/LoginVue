@@ -18,6 +18,8 @@
                 <router-link to="/register" class="btn btn-link">Register</router-link>
             </div>
         </form>
+        <input type="checkbox" id="rememberLogin" name="rememberLogin" value="remember">
+        <label for="rememberLogin"> Keep me logged in</label><br>
     </div>
 </template>
 
