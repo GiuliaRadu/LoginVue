@@ -25,7 +25,7 @@ function login(username, password, remember) {
             // login successful if there's a jwt token in the response
             if (user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                sessionStorage.setItem('user', JSON.stringify(user)); 
+                localStorage.setItem('user', JSON.stringify(user)); 
             }
             return user;
         });
@@ -33,7 +33,7 @@ function login(username, password, remember) {
 
 function logout() {
     // remove user from local storage to log user out
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
 }
 
 function register(user) {
