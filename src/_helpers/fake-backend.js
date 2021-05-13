@@ -111,6 +111,13 @@ export function configureFakeBackend() {
                         // find user by id in users array
                         let urlParts = url.split('/');
                         let id = parseInt(urlParts[urlParts.length - 1]);
+                        axios.delete(`https://localhost:5001/employee/Employee/${id}`)
+                        .then((response) => {
+                            alert("Succesfully deleted")
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
                         for (let i = 0; i < users.length; i++) {
                             let user = users[i];
                             if (user.id === id) {
