@@ -18,7 +18,7 @@
                 <router-link to="/register" class="btn btn-link">Register</router-link>
             </div>
         </form>
-        <input type="checkbox" id="rememberLogin" name="rememberLogin" value="remember">
+        <input type="checkbox"  v-model="remember" id="remember" name="remember" value="false">
         <label for="rememberLogin"> Keep me logged in</label><br>
     </div>
 </template>
@@ -31,6 +31,7 @@ export default {
         return {
             username: '',
             password: '',
+            remember: false,
             submitted: false
         }
     },
@@ -38,16 +39,15 @@ export default {
         ...mapState('account', ['status'])
     },
     created () {
-        // reset login status
         this.logout();
     },
     methods: {
         ...mapActions('account', ['login', 'logout']),
         handleSubmit (e) {
             this.submitted = true;
-            const { username, password } = this;
+            const { username, password, remember } = this;
             if (username && password) {
-                this.login({ username, password })
+                this.login({ username, password, remember })
             }
         }
     }
