@@ -1,4 +1,5 @@
 // array in local storage for registered users
+import axios from 'axios'
 let users = JSON.parse(localStorage.getItem('users')) || [];
     
 export function configureFakeBackend() {
@@ -41,7 +42,17 @@ export function configureFakeBackend() {
                 if (url.endsWith('/users') && opts.method === 'GET') {
                     // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                     if (opts.headers && opts.headers.Authorization === 'Bearer fake-jwt-token') {
-                        resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(users))});
+                        resolve({ ok: true, text: () => 
+                            axios.get("https://localhost:5001/employee/Employee")
+                            .then(response=>{
+                                console.log(response.data)
+                                return Promise.resolve(JSON.stringify(response.data))
+                                
+                            })
+                            .catch(e => {
+                                this.errors.push(e)
+                            })
+                        });
                     } else {
                         // return 401 not authorised if token is null or invalid
                         reject('Unauthorised');

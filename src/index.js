@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
+import VueAxios from 'vue-axios'
+
 import { store } from './_store';
 import { router } from './_helpers';
 import App from './app/App';
